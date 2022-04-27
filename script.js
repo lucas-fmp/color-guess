@@ -4,7 +4,9 @@ const ball3 = document.querySelector('#ball-3');
 const ball4 = document.querySelector('#ball-4');
 const ball5 = document.querySelector('#ball-5');
 const ball6 = document.querySelector('#ball-6');
-const paragraph = document.querySelector('#rgb-color');
+const paragraphColor = document.querySelector('#rgb-color');
+const paragraphAnswer = document.querySelector('#answer');
+
 
 function redColor() {
   const red = Math.floor(Math.random() * 255).toString();
@@ -42,7 +44,6 @@ function randomBallColor() {
   arrayBalls.push(ball5Color);
   arrayBalls.push(ball6Color);
   const indexNumber = Math.floor(Math.random() * 6);
-  console.log(indexNumber);
   return arrayBalls[indexNumber];
 }
 
@@ -53,4 +54,21 @@ ball4.style.backgroundColor = `rgb${ball4Color}`;
 ball5.style.backgroundColor = `rgb${ball5Color}`;
 ball6.style.backgroundColor = `rgb${ball6Color}`;
 
-paragraph.innerText = randomBallColor();
+paragraphColor.innerText = randomBallColor();
+
+const balls = document.querySelectorAll('.ball');
+for (let i = 0; i < balls.length; i += 1) {
+  balls[i].addEventListener('click', (event) => {
+    if (event.target.style.backgroundColor === `rgb${paragraphColor.innerText}`) {
+      paragraphAnswer.innerText = 'Acertou!';
+    } else {
+      paragraphAnswer.innerText = 'Errou! Tente novamente!';
+    }
+  });
+}
+
+const buttonReset = document.querySelector('#reset-game');
+
+buttonReset.addEventListener('click', () => {
+  window.location.reload();
+});

@@ -19,3 +19,13 @@
 #rgb-color {
   text-align: center;
 }
+
+#answer {
+  text-align: center;
+}
+
+#reset-game {
+  text-align: center;
+  margin: auto;
+  display: flex;
+}
