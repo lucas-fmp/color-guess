@@ -29,3 +29,13 @@
   margin: auto;
   display: flex;
 }
+
+#placar, #score {
+  display: inline;
+}
+
+#containerScore {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+}

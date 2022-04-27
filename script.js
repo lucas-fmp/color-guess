@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 const ball1 = document.querySelector('#ball-1');
 const ball2 = document.querySelector('#ball-2');
 const ball3 = document.querySelector('#ball-3');
@@ -6,7 +7,7 @@ const ball5 = document.querySelector('#ball-5');
 const ball6 = document.querySelector('#ball-6');
 const paragraphColor = document.querySelector('#rgb-color');
 const paragraphAnswer = document.querySelector('#answer');
-
+const score = document.querySelector('#score');
 
 function redColor() {
   const red = Math.floor(Math.random() * 255).toString();
@@ -72,3 +73,13 @@ const buttonReset = document.querySelector('#reset-game');
 buttonReset.addEventListener('click', () => {
   window.location.reload();
 });
+
+function initialRenderization() {
+  if (sessionStorage.getItem('scoreNumber') === null) {
+    score.innerText = 0;
+  }
+}
+
+window.onload = function () {
+  initialRenderization();
+}
