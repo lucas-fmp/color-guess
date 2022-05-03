@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable no-loop-func */
 const ball1 = document.querySelector('#ball-1');
 const ball2 = document.querySelector('#ball-2');
@@ -29,14 +30,21 @@ function colorGenerator() {
   return color;
 }
 
-const ball1Color = colorGenerator();
-const ball2Color = colorGenerator();
-const ball3Color = colorGenerator();
-const ball4Color = colorGenerator();
-const ball5Color = colorGenerator();
-const ball6Color = colorGenerator();
+function generateColors() {
+  const ball1Color = colorGenerator();
+  const ball2Color = colorGenerator();
+  const ball3Color = colorGenerator();
+  const ball4Color = colorGenerator();
+  const ball5Color = colorGenerator();
+  const ball6Color = colorGenerator();
 
-function randomBallColor() {
+  ball1.style.backgroundColor = `rgb${ball1Color}`;
+  ball2.style.backgroundColor = `rgb${ball2Color}`;
+  ball3.style.backgroundColor = `rgb${ball3Color}`;
+  ball4.style.backgroundColor = `rgb${ball4Color}`;
+  ball5.style.backgroundColor = `rgb${ball5Color}`;
+  ball6.style.backgroundColor = `rgb${ball6Color}`;
+
   const arrayBalls = [];
   arrayBalls.push(ball1Color);
   arrayBalls.push(ball2Color);
@@ -48,20 +56,15 @@ function randomBallColor() {
   return arrayBalls[indexNumber];
 }
 
-ball1.style.backgroundColor = `rgb${ball1Color}`;
-ball2.style.backgroundColor = `rgb${ball2Color}`;
-ball3.style.backgroundColor = `rgb${ball3Color}`;
-ball4.style.backgroundColor = `rgb${ball4Color}`;
-ball5.style.backgroundColor = `rgb${ball5Color}`;
-ball6.style.backgroundColor = `rgb${ball6Color}`;
-
-paragraphColor.innerText = randomBallColor();
+paragraphColor.innerText = generateColors();
 
 const balls = document.querySelectorAll('.ball');
 for (let i = 0; i < balls.length; i += 1) {
   balls[i].addEventListener('click', (event) => {
     if (event.target.style.backgroundColor === `rgb${paragraphColor.innerText}`) {
       paragraphAnswer.innerText = 'Acertou!';
+      const int = parseInt(score.innerText, 10);
+      score.innerText = int + 3;
     } else {
       paragraphAnswer.innerText = 'Errou! Tente novamente!';
     }
@@ -71,15 +74,7 @@ for (let i = 0; i < balls.length; i += 1) {
 const buttonReset = document.querySelector('#reset-game');
 
 buttonReset.addEventListener('click', () => {
-  window.location.reload();
+  generateColors();
+  paragraphColor.innerText = generateColors();
+  document.querySelector('#answer').innerText = 'Escolha uma cor';
 });
-
-function initialRenderization() {
-  if (sessionStorage.getItem('scoreNumber') === null) {
-    score.innerText = 0;
-  }
-}
-
-window.onload = function () {
-  initialRenderization();
-}
